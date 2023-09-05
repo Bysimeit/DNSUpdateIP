@@ -2,7 +2,7 @@ version: '3'
 
 services:
   dnsupdateip:
-    image: bysimeit/dnsupdateip
+    image: bysimeit/dnsupdateip:latest
     container_name: dnsupdateip
     environment:
       SECRET_TOKEN: "MY_PASSWORD"

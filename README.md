@@ -15,7 +15,7 @@ version: '3'
 
 services:
   dnsupdateip:
-    image: bysimeit/dnsupdateip
+    image: bysimeit/dnsupdateip:latest
     container_name: dnsupdateip
     environment:
       SECRET_TOKEN: "MY_PASSWORD"
@@ -42,7 +42,7 @@ docker run -d \
   -e IS_PROXIED="true" `#optional` \
   -p 80:80 \
   --restart unless-stopped \
-  bysimeit/dnsupdateip
+  bysimeit/dnsupdateip:latest
 ```
 
 ## Parameters
