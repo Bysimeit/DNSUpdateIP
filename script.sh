@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WEB_SITE="https://exemple.com/?token=YOUR_SECRET_TOKEN"
+WEB_SITE="https://example.com/?token=YOUR_SECRET_TOKEN"
 
 while true; do
     echo "---- $(date) ----" 
