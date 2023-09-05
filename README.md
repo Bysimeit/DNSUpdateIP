@@ -6,7 +6,7 @@ Allows you to change the type A IP address of a DNS to avoid using DynDNS or CNA
 
 1. The image is available on [Docker](https://hub.docker.com/r/bysimeit/dnsupdateip). You can pull it with the following command:
 ```bash
-  docker pull bysimeit/dnsupdateip
+  docker pull bysimeit/dnsupdateip:latest
 ```
 2. After pulling the image, you can either create a container with docker-compose or docker cli. Below you will find examples of how to use: 
   * ### docker-compose
