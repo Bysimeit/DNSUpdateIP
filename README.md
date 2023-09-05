@@ -57,7 +57,7 @@ There are seven parameters, two of which are optional. Below are the details of 
 | `API_TOKEN` | The API Token of your user account that has rights to your domain. |
 | `DOMAIN` | The name of your domain (example.com) or a subdomain (sub.exemple.com). |
 | `TTL` | **[Optional]** Time a DNS record is considered valid by cache systems. |
-| `IS_PROXIED` | **[Optional]** Enable or disable Cloudflare proxy status for DNS record |
+| `IS_PROXIED` | **[Optional]** Enable or disable Cloudflare proxy status for DNS record. |
 
 ## FAQ
 
