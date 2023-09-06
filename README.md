@@ -22,7 +22,7 @@ services:
       ZONE_ID: "ZONE_ID"
       DNS_RECORD_ID: "DNS_RECORD_ID"
       API_TOKEN: "API_TOKEN"
-      DOMAIN: "example.be"
+      DOMAIN: "example.com"
       TTL: "120" # Optional
       IS_PROXIED: "false" # Optional
     ports:
@@ -37,7 +37,7 @@ docker run -d \
   -e ZONE_ID="ZONE_ID" \
   -e DNS_RECORD_ID="DNS_RECORD_ID" \
   -e API_TOKEN="API_TOKEN" \
-  -e DOMAIN="example.be" \
+  -e DOMAIN="example.com" \
   -e TTL="120" `#optional` \
   -e IS_PROXIED="true" `#optional` \
   -p 80:80 \
