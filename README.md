@@ -2,25 +2,63 @@
 
 Allows you to change the type A IP address of a DNS to avoid using DynDNS or CNAME flattening.
 
-
 ## Deployment
 
-1. On your Cloudflare dashboard, create a new Workers and put the code that is in `workers.js`. Don’t forget to complete it!
-  * `YOUR_SECRET_TOKEN` : A secret token that you keep to yourself.
-  * `YOUR_ZONE_ID` : This is the unique identifier of the zone (domain) on Cloudflare.
-  * `YOUR_DNS_RECORD_ID` : This is the unique identifier of the DNS record you want to update.
-  * `YOUR_API_TOKEN` : The API Token of your user account that has rights to your domain.
-  * `YOUR_DOMAIN_OR_SUBDOMAIN` : The name of your domain (example.com) or a subdomain (sub.exemple.com).
-2. Modify the script by putting the right domain name where your Workers is located and put the right secret token. 
-  * The code will be executed every 5 minutes, you can change it on line 9. (This is in seconds)
-3. Now you can mount the image with the dockerfile:
+1. The image is available on [Docker](https://hub.docker.com/r/bysimeit/dnsupdateip). You can pull it with the following command:
 ```bash
-  docker build -t DNSUpdateIP .
+  docker pull bysimeit/dnsupdateip:latest
 ```
-4. And finally, you can start a container with the following command:
+2. After pulling the image, you can either create a container with docker-compose or docker cli. Below you will find examples of how to use: 
+  * ### docker-compose
+```yml
+version: '3'
+
+services:
+  dnsupdateip:
+    image: bysimeit/dnsupdateip:latest
+    container_name: dnsupdateip
+    environment:
+      SECRET_TOKEN: "MY_PASSWORD"
+      ZONE_ID: "ZONE_ID"
+      DNS_RECORD_ID: "DNS_RECORD_ID"
+      API_TOKEN: "API_TOKEN"
+      DOMAIN: "example.be"
+      TTL: "120" # Optional
+      IS_PROXIED: "false" # Optional
+    ports:
+      - "80:80"
+    restart: unless-stopped
+```
+  * ### docker cli
 ```bash
-  docker run DNSUpdateIP
+docker run -d \
+  --name=dnsupdateip \
+  -e SECRET_TOKEN="MY_PASSWORD" \
+  -e ZONE_ID="ZONE_ID" \
+  -e DNS_RECORD_ID="DNS_RECORD_ID" \
+  -e API_TOKEN="API_TOKEN" \
+  -e DOMAIN="example.be" \
+  -e TTL="120" `#optional` \
+  -e IS_PROXIED="true" `#optional` \
+  -p 80:80 \
+  --restart unless-stopped \
+  bysimeit/dnsupdateip:latest
 ```
+
+## Parameters
+
+There are seven parameters, two of which are optional. Below are the details of each parameter:
+
+| Parameter | Function |
+| :----: | --- |
+| `SECRET_TOKEN` | You must put a password that you will keep for yourself. |
+| `ZONE_ID` | The unique identifier of the zone (domain) on Cloudflare. The Zone ID is in the overview of your domain. It is usually on the right side of the page. |
+| `DNS_RECORD_ID` | The unique identifier of the DNS record you want to update. You can find it with this command: `curl -X GET "https://api.cloudflare.com/client/v4/zones/YOUR_ZONE_ID/dns_records" -H "Authorization: Bearer YOUR_API_TOKEN" -H "Content-Type: application/json"` |
+| `API_TOKEN` | The API Token of your user account that has rights to your domain. |
+| `DOMAIN` | The name of your domain (example.com) or a subdomain (sub.exemple.com). |
+| `TTL` | **[Optional]** Time a DNS record is considered valid by cache systems. |
+| `IS_PROXIED` | **[Optional]** Enable or disable Cloudflare proxy status for DNS record. |
+
 ## FAQ
 
 #### Why did I create this code?

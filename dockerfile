@@ -1,8 +1,13 @@
-FROM alpine:latest
+FROM node:14
 
-RUN apk add --no-cache curl
+WORKDIR /usr/src/app
 
-COPY script.sh /script.sh
-RUN chmod +x /script.sh
+COPY package*.json ./
 
-CMD [ "/script.sh" ]
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

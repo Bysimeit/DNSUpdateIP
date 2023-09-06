@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  dnsupdateip:
+    image: bysimeit/dnsupdateip:latest
+    container_name: dnsupdateip
+    environment:
+      SECRET_TOKEN: "MY_PASSWORD"
+      ZONE_ID: "ZONE_ID"
+      DNS_RECORD_ID: "DNS_RECORD_ID"
+      API_TOKEN: "API_TOKEN"
+      DOMAIN: "example.be" # or subdomain (here.example.com)
+      TTL: "120" # Optional
+      IS_PROXIED: "true" # Optional
+    ports:
+      - "80:80"
+    restart: unless-stopped
