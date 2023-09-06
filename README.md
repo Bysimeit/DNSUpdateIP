@@ -56,8 +56,8 @@ There are seven parameters, two of which are optional. Below are the details of 
 | `DNS_RECORD_ID` | The unique identifier of the DNS record you want to update. You can find it with this command: `curl -X GET "https://api.cloudflare.com/client/v4/zones/YOUR_ZONE_ID/dns_records" -H "Authorization: Bearer YOUR_API_TOKEN" -H "Content-Type: application/json"` |
 | `API_TOKEN` | The API Token of your user account that has rights to your domain. |
 | `DOMAIN` | The name of your domain (example.com) or a subdomain (sub.exemple.com). |
-| `TTL` | **[Optional]** Time a DNS record is considered valid by cache systems. |
-| `IS_PROXIED` | **[Optional]** Enable or disable Cloudflare proxy status for DNS record. |
+| `TTL` | **[Optional]** Time a DNS record is considered valid by cache systems. Default: Auto (1) |
+| `IS_PROXIED` | **[Optional]** Enable or disable Cloudflare proxy status for DNS record. Default: False |
 
 ## FAQ
 

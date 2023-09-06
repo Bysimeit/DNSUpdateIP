@@ -10,7 +10,7 @@ const ZONE_ID = process.env.ZONE_ID;
 const DNS_RECORD_ID = process.env.DNS_RECORD_ID;
 const API_TOKEN = process.env.API_TOKEN;
 const DOMAIN = process.env.DOMAIN;
-const TTL = process.env.TTL || 1;
+const TTL = parseInt(process.env.TTL, 10) || 1;
 const IS_PROXIED = process.env.IS_PROXIED === 'true';
 
 async function getPublicIP() {
